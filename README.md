@@ -11,7 +11,10 @@ chmod +x ~/bin/keiba
 
 ## 使い方
 
+**add 以外はカレントディレクトリをホームディレクトリにしてください**
+
 ```sh
+
 keiba add #収支を追加する
 keiba list #記録を表示する
 keiba summary #合計件数を表示
