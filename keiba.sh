@@ -12,7 +12,7 @@
     #search レース場などで絞り込み。おそらくgrepとか
 
 #ファイルの保存先
-FILE="$HOME/keiba.txt"
+FILE="keiba.csv"
 
 
 
@@ -29,7 +29,7 @@ add() {
     echo "収支を入力してください。(例：+1200)"
     read money
 
-    echo "$date $race $money" >> "$FILE"
+    echo "$date,$race,$money" >> "$FILE"
     echo "追加しました。:$date $race $money"
 
 }
@@ -45,16 +45,13 @@ list() {
 }
 
 summary() {
-    sum=0
-    count=0
-
-    while read date race money; do
-        sum=$((sum+money))
-        count=$((count+1))
-    done < "$FILE"
-
-    echo "合計収支: $sum 円"
-    echo "件数: $count 回"
+    if [ -f "$FILE" ];
+    then
+        count=$(wc -l < "$FILE")
+        echo "件数:$count 回"
+    else
+        echo "まだ記録されていません。"
+    fi
 
 }
 
